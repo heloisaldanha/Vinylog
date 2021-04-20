@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block 'caminho_logo' %} {% url 'index' %} {% endblock %}
+
+{% block 'titulo' %} Login {% endblock %}
+
+
+{% block 'conteudo' %}
+
+    <h1 class="mt-3 mb-3" style="letter-spacing: .4rem; font-weight: lighter; padding-bottom: 1em;">ENTRAR</h1>
+
+
+<!-- Se o usuário não estiver logado, exiba o formulário de longin, senão,
+informe que está logado e ofereça link pra sair -->
+    {% if not user.is_authenticated %}
+
+        <form method="POST" action="{% url 'login' %}" style="padding-left:25%; padding-right: 25%;">
+            {% csrf_token %} <!-- chave de segurança django -->
+            <div class="form-group">
+                <input type="text" class="form-control" name="usuario" value="{{ request.POST.usuario }}" placeholder="Usuário">
+                <!-- esse value é para não sumir o que foi colocado na caixa se algo der errado, ou aparecer alguma
+                mensagem como "nenhum campo pode ficar vazio", etc. os campos de senha não têm value pq não é pra
+                permanecer na tela mesmo -->
+            </div>
+            <div class="form-group" style="padding-bottom: 3em;">
+                <input type="password" class="form-control" name="senha" placeholder="Senha">
+            </div>
+
+            <button type="submit" class="btn"
+                    style="background-color: #FF8C00; color: black; border-radius: 50px; padding: 5px 120px 5px 120px;">ENTRAR</button>
+
+            <div style="padding-top: 3em;">
+                <p>
+                    Não tem uma conta? <a style="color: #FF8C00" href="{% url 'cadastro' %}">Cadastre-se</a>
+                </p>
+            </div>
+        </form>
+    {% else%}
+        <p style="padding-bottom: 2em;">
+            Você está logado como {{ user }}<br>
+            <a href="{% url 'logout' %}" style="color: #FF8C00;">Clique aqui</a> para sair
+        </p>
+        <a href="{% url 'home' %}">
+            <button class="btn" style="background-color: #FF8C00; color: black; border-radius: 50px; padding: 5px 50px 5px 50px;">Ir para a página inicial</button>
+        </a>
+    {% endif %}
+
+{% endblock %}

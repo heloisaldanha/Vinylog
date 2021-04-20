@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'caminho_logo' %} {% url 'index' %} {% endblock %}
+
+{% block 'botao' %}
+    <a href="{% url 'login' %}">
+        <button type="button" class="btn btn-dark"
+            style="background-color: black; color: white; border-radius: 50px; padding: 5px 120px 5px 120px;">LOGIN</button>
+    </a>
+{% endblock %}
+
+{% block 'conteudo' %}
+<h2 style="letter-spacing: .4rem; font-weight: lighter;">
+    ORGANIZE SUA COLEÇÃO
+</h2>
+<h1 style="letter-spacing: .4rem; font-weight: lighter; padding-bottom: 2em;">
+    DE DISCOS!
+</h1>
+<h4 style="letter-spacing: .2rem; font-weight: lighter;">
+    O Vinylog é um sistema simples que foi pensado<br> e desenvolvido
+    para te ajudar a catalogar, organizar<br> e compartilhar sua coleção
+    de discos.
+</h4>
+<br><br><br>
+<div>
+    <div class="div_home">
+        <a href="{% url 'login' %}">
+            <img src="{% static 'img/Ativo 1.png' %}" alt="ativo1" width="247" height="227">
+        </a>
+        <a href="{% url 'cadastro' %}">
+            <img src="{% static 'img/Ativo 2.png' %}" alt="ativo1" width="253" height="227"
+            style="margin: 0 50px 0 50px;">
+        </a>
+        <a href="{% url 'home' %}">
+            <img src="{% static 'img/Ativo 3.png' %}" alt="ativo1" width="249" height="227">
+        </a>
+    </div>
+    <br><br><br>
+    <a href="{% url 'cadastro' %}">
+        <button type="button" class="btn"
+                style="background-color: #FF8C00; color: black; border-radius: 50px; padding: 5px 120px 5px 120px;">CRIE SUA CONTA</button>
+    </a>
+</div>
+
+
+{% endblock %}

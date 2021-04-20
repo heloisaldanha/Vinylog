@@ -1,0 +1,5 @@
+{% extends 'discos/home.html' %}
+
+{% block 'caminho_logo' %} {% url 'home' %} {% endblock %}
+
+{% block 'titulo' %} {{request.GET.termo}} | {% endblock %}
